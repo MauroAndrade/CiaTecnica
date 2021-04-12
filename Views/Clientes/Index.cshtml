@@ -1,0 +1,71 @@
+﻿@model IEnumerable<CiaTecnica.DTO.ClienteDTO> 
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Clientes Cadastrados</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Novo</a>
+</p>
+<table id="tableCliente" >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome_RazaoSocial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cnpj_Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cep)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Logradouro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Uf)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome_RazaoSocial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cnpj_Cpf)
+            </td>
+            <td>
+                @Convert.ToUInt64(item.Cep).ToString(@"00000\-000")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Logradouro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uf)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ClienteId" class="btn btn-primary">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.ClienteId" class="btn btn-success">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.ClienteId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
